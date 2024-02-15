@@ -196,6 +196,6 @@ According to the logs the best model is:
 
 **Run prediction on test data: `python run_best_forecast.py`**
 
-![Future Forecasts](results\future_forecasts.png)
+![Future Forecasts](results/future_forecasts.png)
 
 
