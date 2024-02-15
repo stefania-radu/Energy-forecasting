@@ -1,6 +1,6 @@
 # Energy Consumption Forecasting Pipeline
 
-![intro](analysis\intro.png)
+![intro](analysis/intro.png)
 
 ## Setup
 
@@ -199,11 +199,3 @@ According to the logs the best model is:
 ![Future Forecasts](results\future_forecasts.png)
 
 
-### What can be improved?
-
-- the evaluation is very basic so I would implement cross validation
-- I would re-write the ForecastExperiment class since it uses hardcoded models and it checks too often for the type of experiment. Also, it makes it difficult to run only one model and record the CPU time. My motivation was based on the documentation of the nixtla library, since their examples are also experiment-based with different models. But then I realised the methods are not consistent across all models (like stats models vs machine learning). 
-- I would look into fixing the type of timestamp for the 'ds' variable or just change it to int. I noticed that different types are required by different methods (fit and predict etc).
-- I would write my own plotting functions since those provide by nixtla are a bit basic
-- I would add configuration files so initalize experiments
-- I would perform grid search to find the best configuration of parameters for some models
