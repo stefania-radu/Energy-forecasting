@@ -23,7 +23,7 @@ Send a request to the endpoint with the .json file. The result contains the fore
     {"forecast":{"0":3922056.7903033737,"1":3889187.233931119.......}
 
 
-![Future Forecasts](results\future_forecasts.png)
+![Future Forecasts](results/future_forecasts.png)
 
 ## End to End Walkthrough
 
@@ -34,14 +34,14 @@ The data shows the energy consumption over a period of approx 3 months. The reco
 That means there are 96 recordings a day and 96*7 recording per week.
 We can already see some seasonality with respect to the day and week. Less power is used during the weekend than during the week days.
 
-![Analysis Image](analysis\ed010d2a-1530-4bfa-b8a2-463aeb224c25.png)
+![Analysis Image](analysis/ed010d2a-1530-4bfa-b8a2-463aeb224c25.png)
 
 There are 3 exogenous variables:
 - shortwave_radiation
 - temperature_2m
 - windspeed_10m
 
-![Exogenous Data](analysis\exog_data.png)
+![Exogenous Data](analysis/exog_data.png)
 
 I performed 2 statistical tests with these variables, first to check their correlation with the response (y) and then to check for multicollinearity.
 
@@ -69,12 +69,12 @@ All the Variance Inflation Factor (VIF) values are quite small so the exogenous 
 
 I performed decomposition on the signal to check for any seasonality and as expected, the results show that there is daily and weekly seasonality:
 
-![Decomposed Image](analysis\decomposed.png)
+![Decomposed Image](analysis/decomposed.png)
 
 
 ### Data loading/preprocessing
 
-Loading the data is done in the [DataLoader](src\DataLoader.py) class, where I used dataframes to extract history and future data, as well as any necessary parameters.
+Loading the data is done in the [DataLoader](src/DataLoader.py) class, where I used dataframes to extract history and future data, as well as any necessary parameters.
 As some values are missing, I used a backword fill method to complete the dataset, since it gave the best results.
 For testing purposes, I split the history data into a training (90%) and a validation dataset (10%). A much more reliable appraoch would have been to use 
 cross validation.
@@ -91,7 +91,7 @@ History Data:
 ### Forecasting experiments
 
 I used the nixtla library for all my experiment. The goal was to compare some statistical models with machine learning models, as well as looking at the 
-effect of exogenous variables. The main class for the experiments is [ForecastExperiment](src\ForecastExperiment.py).
+effect of exogenous variables. The main class for the experiments is [ForecastExperiment](src/ForecastExperiment.py).
 
 - Statistical models without exogenous variables
 
@@ -133,44 +133,44 @@ I also computed the CPU time for fitting and predicting the models.
 
 - Statistical models without exogenous variables
 
-    ![Stats Models Results](results\stats_models.png)
+    ![Stats Models Results](results/stats_models.png)
 
 - Multiple Seasonal-Trend decomposition with exogenous variables
 
     - shortwave radiation
 
-    ![Exog Shortwave Radiation](results\forecasts_exog_shortwave_radiation.png)
+    ![Exog Shortwave Radiation](results/forecasts_exog_shortwave_radiation.png)
 
     - temperature 2m
 
-    ![Exog Temperature 2m](results\forecasts_exog_temperature_2m.png)
+    ![Exog Temperature 2m](results/forecasts_exog_temperature_2m.png)
 
     - windspeed 10m
 
-    ![Exog Windspeed 10m](results\forecasts_exog_windspeed_10m.png)
+    ![Exog Windspeed 10m](results/forecasts_exog_windspeed_10m.png)
 
     - all variables
 
-    ![Exog All Variables](results\forecasts_exog_all.png)
+    ![Exog All Variables](results/forecasts_exog_all.png)
 
 
 - Machine learning models with exogenous variables
 
     - shortwave radiation
 
-    ![ML Shortwave Radiation](results\forecasts_ML_shortwave_radiation.png)
+    ![ML Shortwave Radiation](results/forecasts_ML_shortwave_radiation.png)
 
     - temperature 2m
 
-    ![ML Temperature 2m](results\forecasts_ML_temperature_2m.png)
+    ![ML Temperature 2m](results/forecasts_ML_temperature_2m.png)
 
     - windspeed 10m
 
-    ![ML Windspeed 10m](results\forecasts_ML_windspeed_10m.png)
+    ![ML Windspeed 10m](results/forecasts_ML_windspeed_10m.png)
 
     - all variables
 
-    ![ML All Variables](results\forecasts_ML_all.png)
+    ![ML All Variables](results/forecasts_ML_all.png)
 
 
 CPU time vs loss for some models:
